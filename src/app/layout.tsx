@@ -1,12 +1,25 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import './globals.css'
+import { Navigation } from '@/components/Navigation'
+import { Footer } from '@/components/Footer'
+import { AnimatedBackground } from '@/components/AnimatedBackground'
+import { GridPattern } from '@/components/GridPattern'
 
-const inter = Inter({ subsets: ['latin'] })
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Ian Gicheha Mbae | Python Software Developer',
   description: 'Portfolio of Ian Gicheha Mbae - Python Software Developer and Computer Science student',
+  openGraph: {
+    title: 'Ian Gicheha Mbae | Python Software Developer',
+    description: 'Portfolio of Ian Gicheha Mbae - Python Software Developer and Computer Science student',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -16,7 +29,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${poppins.className} bg-dark text-white overflow-x-hidden`}>
+        <AnimatedBackground />
+        <GridPattern />
+        <Navigation />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
