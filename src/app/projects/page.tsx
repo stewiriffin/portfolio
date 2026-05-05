@@ -42,6 +42,34 @@ const getLanguageGradient = (language: string | null) => {
   }
 }
 
+// Fallback descriptions — GitHub description takes priority when set
+const repoDescriptions: Record<string, string> = {
+  'QR-app':                       'Cross-platform mobile app for generating and scanning QR codes, built with Flutter/Dart.',
+  'QR-code-':                     'Web-based QR code generator with customizable output and instant download.',
+  'Mama-Fua':                     'Laundry service management platform for booking, tracking orders, and payments.',
+  'Kra':                          'Tax compliance and KRA PIN verification tool for Kenyan businesses and individuals.',
+  'linkedln-tool':                 'Browser automation tool for LinkedIn outreach and connection management.',
+  'Resume-builder':               'Interactive resume builder with live preview and one-click PDF export.',
+  'MD-editor':                    'Real-time Markdown editor with live preview, syntax highlighting, and export.',
+  'PDF':                          'PDF generation and manipulation tool for creating documents from structured templates.',
+  'Whatsapp-business-automation': 'Python automation suite for WhatsApp Business API — messaging, notifications, and workflows.',
+  'Jumian':                       'Full-stack TypeScript web application with a modern UI and RESTful backend.',
+  'Chemical-Equation':            'Chemical equation balancer and molecular formula validator aimed at students.',
+  'portfolio':                    'Previous iteration of my personal developer portfolio website.',
+  'Gretsa-Portal-v2':             'Student and staff portal for Gretsa University — v2 rebuild with enhanced features and performance.',
+  'Merry-Christmas':              'Interactive Christmas greeting card with CSS animations and festive effects.',
+  'happy-birthday':               'Animated birthday greeting page with confetti effects and personalised messages.',
+  'Find-out-':                    'Interactive information-discovery tool for querying and displaying data in real time.',
+  'website-compare-':             'Side-by-side website comparison tool for visual UI and content analysis.',
+  'clinic-response-2':            'Clinic management system for patient intake, appointment scheduling, and response tracking.',
+  'Predictor':                    'Prediction tool with a clean web interface, powered by a JavaScript ML model.',
+  'weather-app':                  'Real-time weather dashboard fetching current conditions and forecasts via OpenWeatherMap API.',
+  'Tiktok-video-downloader-':     'Web tool for downloading TikTok videos without watermarks.',
+  'Youtube':                      'YouTube utilities — search, metadata extraction, and video download helpers.',
+  'personal-website':             'Earlier version of my personal developer website and portfolio.',
+  'therapist':                    'Landing page for a therapist practice with service listings and a contact form.',
+}
+
 const formatRepoName = (name: string) =>
   name.replace(/[-_]/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
 
@@ -230,7 +258,7 @@ export default function Projects() {
                         {formatRepoName(repo.name)}
                       </h2>
                       <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">
-                        {repo.description || 'No description available.'}
+                        {repo.description || repoDescriptions[repo.name] || 'No description available.'}
                       </p>
 
                       <div className="flex items-center justify-between">

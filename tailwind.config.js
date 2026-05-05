@@ -8,29 +8,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#306998',
-        secondary: '#FFD43B',
-        dark: '#1a1a2e',
-        darker: '#16162a',
-        card: '#1f1f3a',
+        primary: '#5B8DEF',
+        secondary: '#A78BFA',
+        dark: '#08090F',
+        darker: '#050609',
+        card: '#0E1018',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'particles': 'particles 20s linear infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-20px)' },
-        },
-        glow: {
-          '0%': { boxShadow: '0 0 5px #306998, 0 0 10px #306998' },
-          '100%': { boxShadow: '0 0 20px #306998, 0 0 30px #306998' },
-        },
-        particles: {
-          '0%': { transform: 'translateY(0) rotate(0deg)' },
-          '100%': { transform: 'translateY(-100vh) rotate(360deg)' },
         },
       },
     },

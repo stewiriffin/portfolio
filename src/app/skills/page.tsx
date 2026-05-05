@@ -106,20 +106,13 @@ export default function Skills() {
                       </div>
                       <span className="text-primary font-semibold">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-gradient-to-r from-primary to-secondary rounded-full relative overflow-hidden"
+                        className="h-full bg-primary rounded-full"
                         initial={{ width: 0 }}
                         animate={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1.2, delay: catIndex * 0.1 + skillIndex * 0.05 }}
-                      >
-                        <motion.div
-                          className="absolute inset-0 bg-white/30"
-                          animate={{ x: ['-100%', '100%'] }}
-                          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                          style={{ width: '50%' }}
-                        />
-                      </motion.div>
+                        transition={{ duration: 1, ease: 'easeOut', delay: catIndex * 0.1 + skillIndex * 0.06 }}
+                      />
                     </div>
                   </motion.div>
                 ))}

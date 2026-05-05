@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 26, 26, 46;
-  --background-end-rgb: 22, 22, 42;
+  --background-start-rgb: 8, 9, 15;
+  --background-end-rgb: 5, 6, 9;
 }
 
 * {
@@ -39,12 +39,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #306998;
+  background: #5B8DEF;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #25587e;
+  background: #4A7CE8;
 }
 
 /* Gradient text */

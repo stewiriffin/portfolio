@@ -16,27 +16,26 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    try {
-      const response = await fetch(
-        `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        }
-      )
-      if (!response.ok) throw new Error('Submission failed')
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch {
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-      setTimeout(() => setSubmitStatus('idle'), 4000)
-    }
+
+    const subject = encodeURIComponent(
+      formData.subject || `Portfolio contact from ${formData.name}`
+    )
+    const body = encodeURIComponent(
+      `Hi Ian,\n\nYou have a new message from your portfolio.\n\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n\n` +
+      `Message:\n${formData.message}`
+    )
+
+    window.location.href = `mailto:mbaegicheha@gmail.com?subject=${subject}&body=${body}`
+
+    setSubmitStatus('success')
+    setFormData({ name: '', email: '', subject: '', message: '' })
+    setIsSubmitting(false)
+    setTimeout(() => setSubmitStatus('idle'), 5000)
   }
 
   return (
@@ -192,32 +191,20 @@ export default function Contact() {
 
             <AnimatePresence>
               {submitStatus === 'success' && (
-                <motion.p
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="text-green-400 text-center mt-4 flex items-center justify-center gap-2"
+                  className="mt-4 p-4 rounded-xl bg-green-400/10 border border-green-400/20 text-center"
                 >
-                  <span className="w-6 h-6 bg-green-400/20 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <p className="text-green-400 font-medium flex items-center justify-center gap-2">
+                    <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                  </span>
-                  Message sent! I&apos;ll get back to you soon.
-                </motion.p>
-              )}
-              {submitStatus === 'error' && (
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="text-red-400 text-center mt-4"
-                >
-                  Something went wrong. Email me at{' '}
-                  <a href="mailto:mbaegicheha@gmail.com" className="underline hover:text-red-300">
-                    mbaegicheha@gmail.com
-                  </a>
-                </motion.p>
+                    Your email client has opened with the message ready.
+                  </p>
+                  <p className="text-gray-500 text-xs mt-1">Just hit Send in your email app to deliver it.</p>
+                </motion.div>
               )}
             </AnimatePresence>
           </motion.form>

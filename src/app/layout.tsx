@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     title: 'Ian Gicheha Mbae | Python Software Developer',
     description: 'Portfolio of Ian Gicheha Mbae - Python Software Developer and Computer Science student',
     type: 'website',
+    images: [{ url: '/photo.png', width: 576, height: 1312, alt: 'Ian Gicheha Mbae' }],
   },
 }
 
